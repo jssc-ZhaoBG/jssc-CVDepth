@@ -22,8 +22,7 @@ pip install -r requirements.txt
 pip install causal_conv1d-1.0.0+cu118torch1.13cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 pip install mamba_ssm-1.0.1+cu118torch1.13cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 
-# Baidu Netdisk Downloads  
-  
+## Pretrained Models(Baidu Netdisk Downloads)
 ## KITTI_640x192  
 - Pretrained Model:  
   - Link: [Click here to download](https://pan.baidu.com/s/1ZLopzwK2FZmzHmIJdjFldQ?pwd=5ag5)  
