@@ -17,7 +17,6 @@ Ensure you have the following environment:
 - `cuda==11.7`
 
 To install the required dependencies, run:
-```bash
 pip install -r requirements.txt
 pip install causal_conv1d-1.0.0+cu118torch1.13cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 pip install mamba_ssm-1.0.1+cu118torch1.13cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
@@ -86,13 +85,10 @@ pip install mamba_ssm-1.0.1+cu118torch1.13cxx11abiFALSE-cp310-cp310-linux_x86_64
 ### Training  
 To train the model, run the following command in your terminal or command prompt:  
   
-```bash  
 python train.py
 
 ### Evaluation
 To evaluate the depth estimation performance of the trained model, run the following command:
-  
-```bash  
 python evaluate_depth.py
 
 
