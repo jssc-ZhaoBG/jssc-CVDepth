@@ -100,10 +100,11 @@ class Flops:
                   decoder = \
                       networks.DepthDecoderAttention(net.num_ch_enc, self.opt.scales, no_spatial= self.opt.attention_only_channel)
               else:
-                  decoder = \
-                      networks.DepthDecoder(net.num_ch_enc, self.opt.scales)
+                  # decoder = networks.DepthDecoder(net.num_ch_enc, self.opt.scales)
+                  decoder = networks.ViTDepthDecoder().cuda()
+                  # decoder = networks.MaDepthDecoder().cuda()
 
-              # decoder = networks.MaDepthDecoder().cuda()
+
 
               macs, params = get_model_complexity_info(net, (3,self.opt.height,self.opt.width)  ,input_constructor=prepare_input, as_strings=True, print_per_layer_stat=True, verbose=True)
               
@@ -115,7 +116,7 @@ class Flops:
                   elif self.opt.cmt_layer==3:
                     prepare_decoder_input = prepare_decoder_input_cmt_l3
 
-              d_macs, d_params = get_model_complexity_info(decoder, (self.opt.height,self.opt.width),input_constructor=prepare_decoder_input, as_strings=True, print_per_layer_stat=True, verbose=True)
+              d_macs, d_params = get_model_complexity_info(decoder, (self.opt.height,self.opt.width),input_constructor=prepare_decoder_input_mam, as_strings=True, print_per_layer_stat=True, verbose=True)
 
               print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
               print('{:<30}  {:<8}'.format('Number of parameters: ', params))
@@ -136,10 +137,12 @@ class Flops:
         #                                            depth_binning='linear',
         #                                            num_depth_bins=96)
 
-        
-
 
 if __name__ == '__main__':    
     options = MonodepthOptions()
     flops = Flops(options)
     flops.run()
+
+ # 计算CNN的话，除了要修改 # decoder = networks.DepthDecoder(net.num_ch_enc, self.opt.scales)
+        # 还要修改d_macs, d_params = get_model_complexity_info(decoder, (self.opt.height,self.opt.width),input_constructor=prepare_decoder_input, as_strings=True, print_per_layer_stat=True, verbose=True)
+
